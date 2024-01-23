@@ -1897,7 +1897,7 @@
         },
         {
             "type": 2,
-            "title": "Uptime Kuma",
+            "title": "UptimeKuma",
             "description": "Un outil de surveillance auto-hébergé",
             "categories": ["Monitoring"],
             "manual": true,
