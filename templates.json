@@ -1897,6 +1897,22 @@
         },
         {
             "type": 2,
+            "title": "Uptime Kuma",
+            "description": "Un outil de surveillance auto-hébergé",
+            "categories": ["Monitoring"],
+            "manual": true,
+            "enabled": true,
+            "trial": 7,
+            "price": 19,
+            "logo": "https://imgur.com/a/v6SrV1v",
+            "website": "https://uptime.kuma.pet/",
+            "repository": {
+                "url": "https://github.com/ethibox/awesome-stacks",
+                "stackfile": "stacks/uptime-kuma.yml"
+            }
+        },
+        {
+            "type": 2,
             "title": "Appsmith",
             "description": "Appsmith est un outil Nocode open-source pour créer des applications web et des tableaux de bord.",
             "categories": ["Low-code"],
