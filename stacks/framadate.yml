@@ -3,12 +3,11 @@
 # docker exec -it chown -R 1000:1000 data
 # docker service update --force framadate_framadate
 
-version: '3.8'
-
 services:
   framadate:
     image: ethibox/framadate:${VERSION:-latest}
     environment:
+      - ENV=${ENV:-prod}
       - APP_NAME=Framadate
       - DOMAIN=${DOMAIN:-framadate.localhost}
       - ADMIN_MAIL=${ADMIN_MAIL:-admin@example.com}
@@ -25,7 +24,7 @@ services:
       - SMTP_AUTH=${SMTP_AUTH:-false}
       - SMTP_USERNAME=${SMTP_USERNAME}
       - SMTP_PASSWORD=${SMTP_PASSWORD}
-      - SMTP_SECURE=${SMTP_SECURE:-false}  # (false, tls or ssl)
+      - SMTP_SECURE=${SMTP_SECURE:-false} # (false, tls or ssl)
       - SMTP_PORT=${SMTP_PORT:-25}
     volumes:
       - ${VOLUME_PATH}data:/var/www/framadate
@@ -42,7 +41,7 @@ services:
       - traefik
 
   mariadb:
-    image: mariadb:10.5.9
+    image: mariadb:${MARIADB_VERSION:-10.5.9}
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-myp@ssw0rd}
       - MYSQL_USER=framadate

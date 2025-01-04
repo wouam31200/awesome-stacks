@@ -1,8 +1,6 @@
 # DOMAIN=example.com docker stack deploy -c photoprism.yml photoprism
 # chown -R 1000:1000 photoprism
 
-version: '3.8'
-
 services:
   photoprism:
     image: photoprism/photoprism:${VERSION:-latest}
@@ -19,7 +17,9 @@ services:
       - PHOTOPRISM_DATABASE_USER=photoprism
       - PHOTOPRISM_DATABASE_PASSWORD=myp@ssw0rd
     volumes:
-      - ${VOLUME_PATH}photoprism:/go/src/github.com/photoprism/photoprism
+      - ${VOLUME_PATH}originals:/photoprism/originals
+      - ${VOLUME_PATH}storage:/photoprism/storage
+      - ${VOLUME_PATH}import:/photoprism/import
     deploy:
       labels:
         - traefik.enable=true
@@ -45,7 +45,9 @@ services:
       - internal
 
 volumes:
-  photoprism:
+  originals:
+  storage:
+  import:
   mariadb:
 
 networks:

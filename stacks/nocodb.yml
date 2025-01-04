@@ -1,10 +1,8 @@
 # DOMAIN=example.com docker stack deploy -c nocodb.yml nocodb
 
-version: '3.8'
-
 services:
   nocodb:
-    image: nocodb/nocodb:${VERSION:-0.202.10}
+    image: nocodb/nocodb:${VERSION:-0.207.0}
     healthcheck:
       test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:8080 || exit 1"]
     environment:

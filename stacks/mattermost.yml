@@ -2,11 +2,9 @@
 # chown -R 2000:2000 config/ data/ plugins/
 # ./bin/mmctl --local user create --system-admin --email admin@example.com --username admin --password myp@ssw0rd
 
-version: '3.8'
-
 services:
   app:
-    image: ${IMAGE:-mattermost/mattermost-team-edition}:${VERSION:-release-9.1}
+    image: ${IMAGE:-mattermost/mattermost-team-edition}:${VERSION:-9.11.5}
     volumes:
       - ${VOLUME_PATH}data:/mattermost/data
       - ${VOLUME_PATH}config:/mattermost/config
@@ -25,6 +23,7 @@ services:
       - MM_TEAMSETTINGS_MAXUSERSPERTEAM=${MAXUSERSPERTEAM:-100}
       - MM_SERVICESETTINGS_ENABLEAPICHANNELDELETION=${ENABLEAPICHANNELDELETION:-true}
       - MM_SERVICESETTINGS_ENABLELOCALMODE=${MM_SERVICESETTINGS_ENABLELOCALMODE:-true}
+      - MM_FILESETTINGS_MAXFILESIZE=${MM_FILESETTINGS_MAXFILESIZE:-104857600}
       - edition=team
     networks:
       - internal

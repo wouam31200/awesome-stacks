@@ -1,7 +1,5 @@
 # DOMAIN=example.com docker stack deploy -c writefreely.yml writefreely
 
-version: '3.8'
-
 services:
   web:
     image: writeas/writefreely:${VERSION:-0.12.0}
@@ -11,6 +9,9 @@ services:
       - |
         set -e
         wget -O /go/config.ini https://git.io/Ju8Wf
+        if [ "${DISABLE_ROBOTS:-false}" = "true" ]; then
+          wget -O /go/static/robots.txt https://pastebin.com/raw/tqR8CFkZ
+        fi
         sed -i -e s%#APP_URL%${SCHEME:-https}://${DOMAIN:-writefreely.localhost}%g /go/config.ini
         sed -i -e s/#APP_OPENREGISTRATION/${APP_OPENREGISTRATION:-true}/g /go/config.ini
         sed -i -e s/#APP_FEDERATION/${APP_FEDERATION:-true}/g /go/config.ini

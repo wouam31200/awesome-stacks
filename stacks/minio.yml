@@ -1,10 +1,8 @@
 # DOMAIN=example.com DOMAIN_CONSOLE=console.example.com docker stack deploy -c minio.yml minio
 
-version: '3.8'
-
 services:
   web:
-    image: minio/minio:${VERSION:-RELEASE.2022-10-24T18-35-07Z}
+    image: minio/minio:${VERSION:-RELEASE.2024-05-10T01-41-38Z}
     command: server /data --console-address ":9001"
     volumes:
       - ${VOLUME_PATH}data:/data

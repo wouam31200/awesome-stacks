@@ -1,11 +1,9 @@
 # DOMAIN=example.com docker stack deploy -c peertube.yml peertube
 # for id in $(fdfind -j1 "\-0.mp4" ../data/videos/ -x echo {/} | sed s/-0.mp4//g); do npm run create-transcoding-job -- -v $id; sleep 5; done;
 
-version: '3.8'
-
 services:
   peertube:
-    image: chocobozzz/peertube:${VERSION:-v6.0.3-bookworm}
+    image: chocobozzz/peertube:${VERSION:-v6.3.3-bookworm}
     ports:
       - target: 1935
         published: ${RTMP_PORT:-1935}

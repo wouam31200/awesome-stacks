@@ -1,10 +1,8 @@
 # DOMAIN=example.com docker stack deploy -c listmonk.yml listmonk
 
-version: '3.8'
-
 services:
   app:
-    image: listmonk/listmonk:${VERSION:-v2.5.1}
+    image: listmonk/listmonk:${VERSION:-v4.1.0}
     command:
       - /bin/sh
       - -c
@@ -19,8 +17,6 @@ services:
         fi
         ./listmonk
     environment:
-      - LISTMONK_app__admin_username=${ADMIN_USERNAME:-admin}
-      - LISTMONK_app__admin_password=${ADMIN_PASSWORD:-myp@ssw0rd}
       - LISTMONK_app__address=0.0.0.0:9000
       - LISTMONK_db__host=postgres
       - LISTMONK_db__password=myp@ssw0rd

@@ -1,10 +1,8 @@
 # DOMAIN=example.com docker stack deploy -c pingvin.yml pingvin
 
-version: '3.8'
-
 services:
   web:
-    image: stonith404/pingvin-share:${VERSION:-v0.21.1}
+    image: stonith404/pingvin-share:${VERSION:-v0.29.0}
     volumes:
       - ${VOLUME_PATH}data:/opt/app/backend/data
     deploy:

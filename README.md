@@ -1,34 +1,68 @@
 # Awesome Stacks
 
-Deploy 110+ open-source web apps with one Docker command.
+Deploy 120+ open-source web apps with one Docker command.
 
-## Features
+## ✨ Features
 
-- [x] Traefik compatibility
-- [x] Portainer compatibility
-- [x] No need to manage configuration files
-- [x] Distributed storage compatibility (GlusterFS, Ceph, NFS) with the env `VOLUME_PATH=/mnt/storage_mountpoint/`
+- 🚀 **Easy to use**: Deploy your favorite apps with one command
+- ⚡ **Zero config** : No need to configure anything, just deploy
+- 🔒 **Secure**: Use Traefik and Let's Encrypt to secure your apps
+- 🔧 **Customizable**: Change the domain, the volume path, the version, etc.
+- 🛳️ **Portainer support**: Use `templates.json` to deploy apps with Portainer
 
-## Get started
+## 📋 Requirements
+
+- Docker Swarm
+- Traefik
+
+## 🚀 Installation
+
+1. Install Docker
 
 ```bash
-# 1. Deploy traefik
-docker swarm init
-docker network create --driver=overlay traefik-net
-docker stack deploy -c stacks/traefik.yml traefik
-
-# 2. Check your HTTP and HTTPS ports
-curl https://ipv4.am.i.mullvad.net/port/80
-curl https://ipv4.am.i.mullvad.net/port/443
-
-# 3. Deploy a stack
-DOMAIN=<mydomain.com> docker stack deploy -c <stack.yml> <name>
-
-# Example
-DOMAIN=ghost.example.com docker stack deploy -c stacks/ghost.yml ghost
+apt install -y docker.io
 ```
 
-## Support me
+2. Initialize Docker Swarm
+
+```bash
+docker swarm init
+```
+
+3. Deploy Traefik
+
+```bash
+docker network create -d overlay traefik-net
+docker stack deploy -c stacks/traefik.yml traefik
+```
+
+## 📦 Usage
+
+Deploy your apps with one command!
+
+Here an example with [Nextcloud](./stacks/nextcloud.yml):
+
+```bash
+docker stack deploy -c stacks/nextcloud.yml nextcloud
+```
+
+Go to https://nextcloud.localhost and enjoy your app!
+
+## 🔧 Customization
+
+You can customize the domain, the volume path or the version of your apps with environment variables.
+
+Here an example with [Ghost](./stacks/ghost.yml):
+
+```bash
+DOMAIN=example.com VERSION=5 VOLUME_PATH=/mnt/ docker stack deploy -c stacks/ghost.yml ghost
+```
+
+Go to https://example.com and enjoy your app!
+
+Refer to the `.yml` files in the [stacks](./stacks) directory to explore all available environment variables and customization options for each app if needed.
+
+## 🎁 Support me
 
 I'd love to work on this project, but my time on this earth is limited, support my work to give me more time!
 
@@ -42,7 +76,7 @@ Please support me with a one-time or a monthly donation and help me continue my 
 [![Mastodon](https://img.shields.io/mastodon/follow/1631?domain=https%3A%2F%2Fmastodon.ethibox.fr&style=social)](https://mastodon.ethibox.fr/@johackim)
 [![Twitter](https://img.shields.io/twitter/follow/_johackim?style=social)](https://twitter.com/_johackim)
 
-## License
+## 📜 License
 
 This project is licensed under the GNU GPL v3.0 - see the [LICENSE.txt](https://raw.githubusercontent.com/ethibox/awesome-stacks/master/LICENSE.txt) file for details
 
